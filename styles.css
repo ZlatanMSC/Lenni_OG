@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, rgba(26, 20, 10, 0.9) 0%, rgba(51, 34, 10, 0.9) 50%, rgba(38, 28, 15, 0.9) 100%), 
+                url('img/hintergrund.jpg') center/cover no-repeat fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 50%);
+    animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.container {
+    max-width: 680px;
+    width: 100%;
+    animation: fadeIn 0.8s ease-in;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.profile-image {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid transparent;
+    background: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00);
+    background-clip: padding-box;
+    padding: 5px;
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.5), 0 0 80px rgba(255, 165, 0, 0.4);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.profile-image::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00);
+    filter: blur(15px);
+    opacity: 0.7;
+    z-index: -1;
+    animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+
+.profile-image:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 60px rgba(255, 215, 0, 0.7), 0 0 100px rgba(255, 165, 0, 0.6);
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    background: #1a1a2e;
+}
+
+.name {
+    font-size: 2.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #FFD700, #FFF4CC, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4));
+    letter-spacing: 2px;
+}
+
+.bio {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.links-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.link-button {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 22px 32px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.link-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.link-button:hover::before {
+    left: 100%;
+}
+
+.link-button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 2px;
+    background: linear-gradient(135deg, transparent, rgba(255, 215, 0, 0.6), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.link-button:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.link-button:hover::after {
+    opacity: 1;
+}
+
+.link-button i:first-child {
+    font-size: 1.5rem;
+}
+
+.link-button span {
+    flex: 1;
+}
+
+.link-button .arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.link-button:hover .arrow {
+    transform: translateX(5px);
+}
+
+.youtube:hover {
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.3) 0%, rgba(204, 0, 0, 0.3) 100%);
+    border-color: #FF0000;
+    box-shadow: 0 12px 40px rgba(255, 0, 0, 0.4), 0 0 30px rgba(255, 0, 0, 0.3);
+}
+
+.twitch:hover {
+    background: linear-gradient(135deg, rgba(145, 70, 255, 0.3) 0%, rgba(108, 45, 199, 0.3) 100%);
+    border-color: #9146FF;
+    box-shadow: 0 12px 40px rgba(145, 70, 255, 0.4), 0 0 30px rgba(145, 70, 255, 0.3);
+}
+
+.fortnite:hover {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 165, 0, 0.3) 100%);
+    border-color: #FFD700;
+    box-shadow: 0 12px 40px rgba(255, 215, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.4);
+}
+
+.email:hover {
+    background: linear-gradient(135deg, rgba(234, 67, 53, 0.3) 0%, rgba(197, 34, 31, 0.3) 100%);
+    border-color: #ea4335;
+    box-shadow: 0 12px 40px rgba(234, 67, 53, 0.4), 0 0 30px rgba(234, 67, 53, 0.3);
+}
+
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .name {
+        font-size: 2rem;
+    }
+
+    .link-button {
+        padding: 18px 25px;
+        font-size: 1rem;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* Animations */
+.link-button {
+    animation: slideUp 0.5s ease-in;
+    animation-fill-mode: both;
+}
+
+.link-button:nth-child(1) { animation-delay: 0.1s; }
+.link-button:nth-child(2) { animation-delay: 0.2s; }
+.link-button:nth-child(3) { animation-delay: 0.3s; }
+.link-button:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
